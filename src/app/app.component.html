@@ -4,15 +4,15 @@
     <h2>
       todos
     </h2>
-    <li 
-      (click)="clickaronEn(item.id)" 
-      *ngFor="let item of tasks" 
-      class="task"
-      > 
-      <span class="complete-btn"></span>
-      <span class="task-title">{{ item.title }}</span>
-      <span class="delete-btn">X</span>
-    
+    <li [ngClass]="{ 'completed' :  currentTask.completed }" [class.completed]="currentTask.completed"
+      *ngFor="let currentTask of tasks" class="task">
+      <span (click)="completeThisTask(currentTask)" class="complete-btn"></span>
+      <span class="task-title">{{ currentTask.title }}</span>
+      <span (click)="deleteThisTask(currentTask)" class="delete-btn">X</span>
+
     </li>
   </ul>
+
+
+  <button (click)="reloadData()">Reset</button>
 </div>
